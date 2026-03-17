@@ -16,5 +16,4 @@ public class AlunoService {
     {
         alunoRepository.save(aluno);
     }
-
 }
