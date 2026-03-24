@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import br.com.alunoonline.api.model.Aluno;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -22,5 +23,10 @@ public class AlunoService
     public List<Aluno> listarTodosAlunos()
     {
         return alunoRepository.findAll();
+    }
+
+    public Optional<Aluno> buscarAlunoPorId(Long id)
+    {
+        return alunoRepository.findById(id);
     }
 }
