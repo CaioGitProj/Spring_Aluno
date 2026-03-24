@@ -31,9 +31,9 @@ public class AlunoController
         return alunoService.listarTodosAlunos();
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Optional<Aluno> buscarAlunoPorId(Long id)
+    public Optional<Aluno> buscarAlunoPorId(@PathVariable Long id)
     {
         return alunoService.buscarAlunoPorId(id);
     }
