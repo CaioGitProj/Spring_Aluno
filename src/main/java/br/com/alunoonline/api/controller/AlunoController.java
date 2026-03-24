@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/Alunos")
@@ -16,7 +18,15 @@ public class AlunoController
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void criarAluno(@RequestBody Aluno aluno){
+    public void criarAluno(@RequestBody Aluno aluno)
+    {
         alunoService.criarAluno(aluno);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<Aluno> listarTodosAlunos()
+    {
+        return alunoService.listarTodosAlunos();
     }
 }
