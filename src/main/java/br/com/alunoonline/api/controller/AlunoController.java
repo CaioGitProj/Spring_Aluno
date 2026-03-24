@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -28,5 +29,12 @@ public class AlunoController
     public List<Aluno> listarTodosAlunos()
     {
         return alunoService.listarTodosAlunos();
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<Aluno> buscarAlunoPorId(Long id)
+    {
+        return alunoService.buscarAlunoPorId(id);
     }
 }
