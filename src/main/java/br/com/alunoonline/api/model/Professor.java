@@ -1,4 +1,22 @@
 package br.com.alunoonline.api.model;
 
-public class Professor {
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Table(name = "professor")
+@Entity
+public class Professor
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+    private String email;
+    private String cpf;
 }
