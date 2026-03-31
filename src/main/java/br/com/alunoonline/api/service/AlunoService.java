@@ -29,4 +29,15 @@ public class AlunoService
     {
         return alunoRepository.findById(id);
     }
+
+    public void deletarAlunoPorId(Long id)
+    {
+        alunoRepository.deleteById(id);
+    }
+
+    public void atualizarAlunoPorId(Long id, Aluno alunoEditado)
+    {
+        alunoEditado.setId(id);
+        alunoRepository.save(alunoEditado);
+    }
 }
