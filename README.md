@@ -145,6 +145,7 @@ public interface (...)Repository extends JpaRepository<(TIPO), Long> {
     * `HttpStatus.CREATED`
     * `HttpStatus.NO_CONTENT`
   * `@RequestBody` : Indica que o tipo que será enviado no Body da resposta HTTP
+  * `@PathVariable` : Extrai valores da URL como variáveis
 
 ``` java
     @PostMapping
@@ -161,4 +162,65 @@ public interface (...)Repository extends JpaRepository<(TIPO), Long> {
     {
         return (...)Service.listarTodos(...)();
     }
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<(TIPO)> buscar(...)PorId(@PathVariable Long id)
+    {
+        return (...)Service.buscar(...)PorId(id);
+    }
+    
+    
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletar(...)PorId(@PathVariable Long id)
+    {
+        (...)Service.deletar(...)PorId(id);
+    }
+
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void atualizar(...)PorId(@PathVariable Long id, @RequestBody (TIPO)(...)Editado)
+    {
+        (...)Service.atualizar(...)PorId(id, (...)Editado);
+    }
 ```
+---
+
+### **Imagens do Insominia (Pasta 'imagens')**
+### ALUNO
+
+#### Criar
+![criarAluno.png](imagens/Aluno/criarAluno.png)
+![criarAluno2.png](imagens/Aluno/criarAluno2.png)
+
+#### Encontrar
+![encontrarTodosAlunos.png](imagens/Aluno/encontrarTodosAlunos.png)
+![encontrarAluno.png](imagens/Aluno/encontrarAluno.png)
+
+#### Atualizar
+![atualizarAluno.png](imagens/Aluno/atualizarAluno.png)
+
+#### Deletar
+![deletarAluno.png](imagens/Aluno/deletarAluno.png)
+---
+
+### Professor
+
+#### Criar
+![criarProfessor.png](imagens/Professor/criarProfessor.png)
+
+#### Encontrar
+![encontrarTodosProfessores.png](imagens/Professor/encontrarTodosProfessores.png)
+![encontrarProfessorPorId.png](imagens/Professor/encontrarProfessorPorId.png)
+
+#### Atualizar
+![encontrarProfessorPorId.png](imagens/Professor/encontrarProfessorPorId.png)
+
+#### Deletar
+![deletarProfessorPorId.png](imagens/Professor/deletarProfessorPorId.png)
+---
+
+### **Imagens do DBEAVER**
+![DbeaverAlunos.png](imagens/Dbeaver/DbeaverAlunos.png)
+![DbeaverProfessor.png](imagens/Dbeaver/DbeaverProfessor.png)
