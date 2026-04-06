@@ -87,12 +87,78 @@ Abaixo estão as rotas disponíveis para o recurso de Alunos (extensível para P
 ### Injeção de Dependências
 Utilizamos a anotação `@Autowired` para que o Spring injete a depedências de uma determinada classe sem que a divisão de trabalhos seja quebrada.
 
-### Lógica de Atualização
-No `Service`:
+### Lógica do Service
 #### Injeção de dependências `repository`, `@autowired (...)Repository`
     "(...)" é o nome da classe que estamos fazendo o service( no caso, ou aluno ou professor)
-```java
+
+``` java
 public void atualizar(...)PorId(Long id, Aluno (...)Editado) {
     (...)Editado.setId(id); // Garante que o ID da URL seja o mesmo do objeto
     (...)Repository.save((...)Editado); // O .save() faz update se o ID já existir
 }
+
+public void criar(...)((TIPO) (...)){
+    (...)Repository.save((...));
+}
+
+
+public List<(TIPO)> listarTodos(...)(){
+    return (...)Repository.findAll(); 
+    // Retorna uma lista contendo todas as intâncias do tipo especificado
+}
+public Optional<(TIPO)> buscar(...)PorId(Long id){
+    return (...)Repository.findById(id); 
+    // Retorna a instância que possui o mesmo id digitado
+}
+
+
+public void deletar(...)PorId(Long id){
+    (...)Repository.deleteById(id); 
+    // Deleta a instância que possui id digitado
+}
+```
+
+### Lógica do Repository
+``` java
+@Repository // Diz ao compilador que o código abaixo será do tipo repository
+
+public interface (...)Repository extends JpaRepository<(TIPO), Long> {
+} 
+
+// Interface que extende as implementações de comunicação 
+//com o banco do JpaRepository( Spring Data )
+```
+
+
+### Lógica do Controller
+#### Injeção de dependências `Service`, `@autowired (...)Service`
+### **Anotações:**
+
+* **Anotações verbos HTTP:**
+  * `@RestController`: Indica que o código abaixo é um controlador que segue a arquitetura REST.
+  * `@RequestMapping("/(TIPO)")`: Mapeia o controlador pela URL.
+  * `@PostMapping` : Recebe uma requisição do tipo **POST**
+  * `@GetMapping` : Recebe uma requisição do tipo **GET**
+  * `@DeleteMapping` : Recebe uma requisição do tipo **DELETE**
+  * `@ResponseStatus` : Indica qual resposta HTTP deve ser entregue para essa requisição
+    * `HttpStatus.OK`
+    * `HttpStatus.CREATED`
+    * `HttpStatus.NO_CONTENT`
+  * `@RequestBody` : Indica que o tipo que será enviado no Body da resposta HTTP
+
+``` java
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void criar(...)(@RequestBody (TIPO) (...))
+    {
+        (...)Service.criar(...)((...));
+    }
+
+  
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<(TIPO)> listarTodos(...)()
+    {
+        return (...)Service.listarTodos(...)();
+    }
+```
