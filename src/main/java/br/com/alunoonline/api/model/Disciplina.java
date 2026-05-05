@@ -14,10 +14,12 @@ public class Disciplina
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "disciplina_id")
     private Long id;
 
-
+    @Column(name = "nome_disciplina", length = 120)
     private String nome;
+    
     private Integer cargaHoraria;
 
 
