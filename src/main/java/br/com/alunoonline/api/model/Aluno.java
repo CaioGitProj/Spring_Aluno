@@ -25,6 +25,6 @@ public class Aluno
     @Column(name = "email_aluno", length = 200)
     private String email;
 
-    @Column(name = "cpf_aluno", nullable = false)
+    @Column(name = "cpf_aluno")
     private String cpf;
 }
